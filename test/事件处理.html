@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="say('hi')">say hi</button>
+        <button v-on:click="say('hello')">say hello</button>
+        <button v-on:click="getEvent">事件对象</button>  <!--事件对象本身不传任何参数，如果必需要传，只能传$event,$是为了区分Vue-->
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: { },
+        methods: {  //所有自定义函数必须放在这个选项内部
+            say (str){
+                alert(str)
+            },
+            getEvent(event){
+                //这是事件对象
+                console.log(event); 
+            }
+        }
+    })
+</script>
+</html>
