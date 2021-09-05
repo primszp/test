@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="flag">如果为真我就显示</div>
+        <div v-else>如果为假我就吓死你</div>
+        <div v-if='!flag'>假的</div>
+
+        <div v-if='index === 0'>000000</div>
+        <div v-else-if='index === 1'>111111</div>
+        <div v-else-if='index === 2'>222222</div>
+
+        <div v-show='flag'>v-show显示了</div>  <!--v-if和v-show都是条件判断是否显示，v-if初始不渲染，后期再根据条件决定是否渲染，因此运行时消耗大-->
+                                            <!--v-show初始渲染所有，但对于不满足条件的设置为隐藏，因此初始渲染消耗-->
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            flag: true,
+            index: 2
+        }
+    })
+</script>
+</html>
