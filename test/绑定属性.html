@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div msg="msg"></div>   <!--无法直接把变量值解析为属性值-->
+        <div v-bind:msg="msg"></div>   <!--需要vue绑定属性写法-->
+        <div :msg="msg"></div>  <!--简写-->
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: { 
+            msg: 'hello Vue'
+        }
+    })
+</script>
+</html>

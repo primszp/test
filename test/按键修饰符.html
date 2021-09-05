@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        event对象按键：<input type="text" @keyup="getDataEvent">
+        <br/>
+        vue对象按键：<input type="text" @keyup.enter="getDataVue">  <!--事件修饰符的时间对象-->
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            getDataEvent (event) {
+                if (event.keyCode === 13) {   //原生js的事件对象写法，DOM操作
+                    console.log('获取到值了');
+                }
+            },
+            getDataVue () {
+                console.log('获取到值了')  
+            }
+        }  
+    })
+</script>
+</html>
