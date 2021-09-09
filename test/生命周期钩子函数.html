@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ tip }}
+        <input type="button" @click="fn1" value="事件1">
+        <input type="button" @click="fn2" value="事件2">
+        <input type="button" @click="allend" value="结束">
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            tip: "初始值"
+        },
+        methods: {
+            fn1 () {
+                this.tip = "状态1"
+            },
+            fn2 () {
+                this.tip = "状态2"
+            },
+            allend () {
+                this.$destroy();  //实例被销毁，生命周期结束
+            }
+        },
+        beforeCreate () {
+            console.log("实例准备开始")
+        },
+        created () {
+            console.log("实例开始了")
+        },
+        beforeMount () {},
+        mounted () {},
+        beforeUpdate () {},
+        updated () {},
+        beforeDestroy () {},
+        destroyed () {}
+    })
+</script>
+</html>

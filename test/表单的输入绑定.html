@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="用户名" v-model.lazy.trim="username"/>{{ username }}<br/>  <!--.lazy修饰符使失去焦点或者按回车键时才会运算-->
+        <br/>
+
+        <input type="password" placeholder="密码" v-model.trim="password"/><br> <!--.trim修饰符用于去除两端的空格-->
+        <br/>
+
+        <input type="email" placeholder="邮箱" v-model="email"/><br/>  <!--.number 在手机上使用会唤起-->
+        <br/>
+        <input type="number" placeholder="年龄" v-model.number="age" step="1" min="1"/><br/>
+        <br/>
+
+        <input type="radio" name="sex" v-model="sex" value="1"/>男
+        <input type="radio" name="sex" v-model="sex" value="0"/>女
+        <br/>
+
+        <input type="checkbox" name="hobby" value="篮球" v-model="hobby"/>篮球
+        <input type="checkbox" name="hobby" value="足球" v-model="hobby"/>足球
+        <input type="checkbox" name="hobby" value="排球" v-model="hobby"/>排球
+        <input type="checkbox" name="hobby" value="乒乓球" v-model="hobby"/>乒乓球
+        <br>
+
+        <select v-model="lesson" name="" id="">
+            <option value="" disabled>请选择</option>
+            <option value="一阶段">一阶段</option>
+            <option value="二阶段">二阶段</option>
+            <option value="三阶段">三阶段</option>
+        </select>
+        <br>
+        <br>
+
+        <textarea v-model="note" id="" cols="30" rows="10"></textarea>
+        <br>
+        <br>
+        <input type="checkbox" v-model="flag">已阅读内容条款<br>
+        <input type="button" value="获取信息" @click="getData"/>
+
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: { 
+            username: 'prims',
+            password: '123456',
+            email: '13211321@kk.com',
+            age: 18,
+            sex: "1",
+            hobby: ['篮球','足球'],
+            flag: true,
+            lesson: '',
+            note: ""       
+        },
+        methods: {
+            getData () {
+                const obj = {
+                    username: this.username,
+                    password: this.password,
+                    email: this.email,
+                    age: this.age,
+                    sex: this.sex,
+                    hobby: this.hobby,
+                    flag: this.flag,
+                    lesson: this.lesson,
+                    note: this.note
+                }
+                console.log(obj)
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ myFun() }} --- {{ myFun() }}  ---  {{ myFun() }}  <!--这是调用了三次自定义方法，自定义方法是执行定义的函数-->
+
+        {{ fn1 }} ----{{ fn1 }} ------{{ fn1 }}  <!--这里调用了三次计算属性，计算属性是直接使用计算结果-->
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello world",
+        },
+        computed: {
+            fn1 () {      
+                console.log('computed');   //计算属性，这里了只会执行一次，因为具有依赖性，只要data不变，计算属性不会重新计算，而是直接使用上次执行的值
+                return this.msg.split('').reverse().join('');
+            }
+        },
+        
+        methods: {
+            myFun () {
+                console.log('methods');   //自定义方法每次调用都会再执行一次
+                return this.msg.split('').reverse().join('');
+            }
+        }
+
+    })
+</script>
+</html>

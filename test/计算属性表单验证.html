@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="username" placeholder="用户名">
+        <br><br>
+        <input type="password" v-model="password" placeholder="用户密码">{{ tess }}
+        <br><br>
+        <input type="button" value="提交" @click=getMsg>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            username: '',
+            password: ''
+        },
+        computed: {
+            tess () {
+                if(this.password.length == 0){
+                    return "";
+                }else if(this.password.length !== 6){
+                    return "密码位数不正确";
+                }
+            }
+        },
+        methods: {
+            getMsg () {
+                const obj = {
+                    username: this.username,
+                    password: this.password
+                }
+                console.log(obj)
+            }
+        }
+    })
+</script>
+</html>
