@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <myheader></myheader>  <!--3、使用该全局组件-->
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+
+    
+    //1、定义组件
+    const Header = {  
+        template: '<header>这是header组件</header>',  //相当于new Vue的el
+    }
+
+    //2、全局注册一个名为myheader的组件
+    Vue.component('myheader', Header)
+
+
+    //以上也可以直接写成这种形式
+    // Vue.component('myheader', {
+    //     template: '<header>这是header组件</header>'
+    // })
+
+    const app = new Vue({
+        el: "#app",
+        data: {}
+    })
+
+</script>
+</html>

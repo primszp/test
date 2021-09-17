@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .head {background-color: aqua;}
+        .content {border: 5px solid #666;}
+        .content .banner{background-color: burlywood;}
+        .content .nav{background-color: cadetblue;}
+        .foot {background-color: brown;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <my-header></my-header>
+        <my-content></my-content>
+        <my-footer></my-footer>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const mybanner = {  //1、定义子组件，要注意要在父组件之前定义，确保“先定义，后使用”
+        template: '<div>这是轮播图</div>'
+    } 
+
+    const mynav = {
+        template: '<div>这是导航</div>'
+    }
+
+    const Myheader = {  //定义组件，组件也是Vue的一个实例
+        template: '<header class="head">头部</header>'
+    }
+
+    const Mycontent = {
+        //3、在对应父组件内的模板内使用子组件模板
+        template: `<div class="content">
+                        内容部分
+                        <my-banner class="banner"></my-banner>   
+                        <my-nav class="nav"></my-nav>
+                    </div>`,
+        components: {  //2、在对应父组件内注册子组件
+            'my-banner': mybanner,
+            'my-nav': mynav
+        }
+    }
+    
+
+    const Myfooter = {
+        template: '<footer class="foot">尾部</footer>'
+    }
+
+
+
+    const app = new Vue({
+        el: "#app",
+        components: {
+            'my-header': Myheader,
+            'my-content': Mycontent,
+            'my-footer': Myfooter
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-content></my-content>
+    </div>
+</body>
+
+<template id="content2">
+    <div>
+        这是内容部分
+        <my-banner></my-banner>
+        <my-nav></my-nav>
+    </div>
+</template>
+
+<script src="vue.js"></script>
+<script>
+
+    const Banner = {
+        template: `<div>这是轮播图</div>`
+    }
+
+    const Nav= {
+        template: `<div>导航</div>`
+    }
+
+//这种写法会让html部分（template模板）不方便书写
+    // const Content = {
+    //     template: `<div>
+    //                     这是内容部分
+    //                     <my-banner></my-banner>
+    //                     <my-nav></my-nav>
+    //                 </div>`,
+
+    //     components: {
+    //         'my-banner': Banner,
+    //         'my-nav': Nav
+    //     }
+    // }
+
+//因此这里需要把模板抽离到html部分
+    const Content = {
+        template: '#content2',  //这里抽离模板
+        components: {
+            'my-banner': Banner,
+            'my-nav': Nav
+        }
+    }
+
+
+    const app = new Vue({
+        el: "#app",
+        components: {
+            'my-content': Content
+        }
+    }) 
+</script>
+</html>

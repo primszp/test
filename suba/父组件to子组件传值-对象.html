@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-content aa="don't let her cry again!" :bb="100" :cc="true" :dd="tips"/>
+    </div>
+</body>
+<template id="content">
+    <div>
+        这是内容部分:{{ aa }} --- {{ bb }} ---- {{ cc }} --- {{ dd }}
+    </div>
+</template>
+<script src="vue.js"></script>
+<script>
+    const mycontent = {
+        template: "#content",
+        props: {              //对象写法可以验证数据的有效性-----可能父子组件不是一个人写的，如果数据类型不对，会报出警告，可以及时调整
+            aa: String,
+            bb: Number,
+            cc: Boolean,
+            dd: String
+        }
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            tips: 'ajsdhkhsa'
+        },
+        components: {
+            "my-content": mycontent
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-content></my-content>
+    </div>
+</body>
+<template id="content">
+    <div>
+        这是内容部分
+    </div>
+</template>
+<script src="vue.js"></script>
+<script>
+    const mycontent = {
+        template: "#content"
+    }
+    
+    const app = new Vue({
+        el: "#app",
+        components: {
+            "my-content": mycontent
+        }
+    })
+</script>
+</html>

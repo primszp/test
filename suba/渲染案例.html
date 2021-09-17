@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <myprolist/> <!--A3、引用父组件模板-->
+    </div>
+</body>
+ <!--A4、抽离组件模板-->
+<template id="pro">
+    <ul>
+        <li v-for="(item, index) of list" :key=index>
+            {{ item }}
+        </li>
+    </ul>
+</template>
+<script src="vue.js"></script>
+<script src="axios.js"></script>
+<script>
+    const Prolist = {     //A1、定义父组件
+        template: '#pro',  //A4、抽离组件模板
+        data () {   
+            return {
+                list: []
+            }
+        },
+        mounted () {
+            axios.get('https://api.iyk0.com/ysxw/').then(res => {
+                (res.data.data).forEach(element => {
+                    this.list.push(element.title)
+                });
+                // console.log(this.list)
+            })
+        }  // B1、生命周期请求数据
+    }
+
+    const app = new Vue({
+        el: "#app",
+        components: {  //A2、局部注册父组件
+           "myprolist": Prolist
+        }
+    })
+</script>
+</html>

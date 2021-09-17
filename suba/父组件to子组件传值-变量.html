@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--A1、在父组件调用子组件的地方自定义属性，属性值就是要传给子组件的值，如果传的值是num，布尔值或者变量，那么需要用到绑定属性-->
+        <my-content test="传值测试" :aa="100" :bb="true" :cc="tips"></my-content>  
+    </div>
+</body>
+<template id="content">
+    <div>
+        这是内容部分----{{ test }}----{{ aa }}-----{{ bb }}----{{ cc }}  <!--A3、利用{{ }} 语法使用值-->
+    </div>
+</template>
+
+<script src="vue.js"></script>
+<script>
+    const mycontent = {
+        template: "#content",
+        props: ['test', 'aa', 'bb', 'cc']  //A2、在定义子组件的地方设定props属性，值为数组的话，数组的项就是属性名
+    } 
+    
+    const app = new Vue({
+        el: "#app",
+        data: {
+            tips: "jasgdasd"
+        },
+        components: {
+            'my-content': mycontent
+        }
+    })
+</script>
+</html>
