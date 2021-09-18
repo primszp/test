@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="tem='Acom'">a</button>
+        <button @click="tem='Bcom'">b</button>
+        <button @click="tem='Ccom'">c</button>
+        <keep-alive>         <!--keep-alive用于保存程序的状态-->
+            <component :is="tem"></component>
+        </keep-alive>
+    </div>
+    <template id="A">
+        <input type="text" placeholder="aa">
+    </template>
+    <template id="B">
+        <input type="text" placeholder="bb">
+    </template>
+    <template id="C">
+        <input type="text" placeholder="cc">
+    </template>
+</body>
+<script src="vue.js"></script>
+<script>
+    const a = {
+        template: "#A"
+    }
+    const b = {
+        template: "#B"
+    }
+    const c = {
+        template: "#C"
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            tem: "Acom"
+        },
+        components: {
+            'Acom': a,
+            'Bcom': b,
+            'Ccom': c
+        }
+        
+    })
+</script>
+</html>

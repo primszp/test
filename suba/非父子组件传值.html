@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">  
+        <my-list></my-list>
+        <my-count></my-count>
+    </div>
+
+    <template id="mylist">
+        <ul>
+            <li>111<button @click="add">+1</button></li>
+            <li>222<button @click="add">+1</button></li>
+            <li>333<button @click="add">+1</button></li>
+            <li>444<button @click="add">+1</button></li>
+        </ul>
+    </template>
+    <template id="mycount">
+        <div>
+            总计：{{ num }}
+        </div>
+    </template>
+</body>
+<script src="vue.js"></script>
+<script>
+    const bus = new Vue(); //****0、创建中间组件，利用中央事件总线传值
+
+    const list = {  //*******2、创建组件二用于接收值，利用$emit进行传值
+        template: "#mylist",
+        methods: {
+            add () {
+                bus.$emit('myevent', 1)
+            }
+        }
+    }
+
+    const count = {   //******1、创建组件一（这个组件的值传到组件二中，在生命周期函数中利用$on进行接收
+        template: "#mycount",
+        data () {
+            return {
+                num: 0
+            }
+        },
+        mounted () {  //******
+            bus.$on('myevent', (val) => {  //如果要在该组件调用值，需要注意this的指向问题，这里使用箭头函数改变this指向
+                console.log(val);
+                this.num += val;
+            })
+        }
+    }
+
+    const app = new Vue({
+        el: "#app",
+        components: {
+            'my-list': list,  //****3、注册两个组件（作为兄弟组件）
+            'my-count': count
+        }
+    })
+</script>
+</html>

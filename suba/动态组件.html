@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="tem='aa'">a</button>
+        <button @click="tem='bb'">b</button>
+        <button @click="tem='cc'">c</button>
+        <component :is="tem"></component>  <!--动态组件写法-->
+        <!-- <aa></aa>
+        <bb></bb>
+        <cc></cc> -->
+    </div>
+    <template id="A">
+        <input type="text" placeholder="A">
+    </template>
+    <template id="B">
+        <input type="text" placeholder="B">
+    </template>
+    <template id="C">
+        <input type="text" placeholder="C">
+    </template>
+</body>
+<script src="vue.js"></script>
+<script>
+
+    const a = {
+        template: "#A"
+    }
+    const b = {
+        template: "#B"
+    }
+    const c = {
+        template: "#C"
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            tem: 'aa'
+        },
+        components: {
+            'aa': a,
+            'bb': b,
+            'cc': c
+        },
+    })
+</script>
+</html>

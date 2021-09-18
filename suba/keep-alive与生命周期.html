@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="tem='aa'">aa</button>
+        <button @click="tem='bb'">bb</button>
+        <button @click="tem='cc'">cc</button>
+        <keep-alive include="mya,myb">   <!--规定被命名的组件有keep-alive效果，注意逗号之间不要有间隔-->
+            <component :is="tem"></component>
+        </keep-alive>
+    </div>
+    <template id="A">
+        <input type="text" placeholder="aa">
+    </template>
+    <template id="B">
+        <input type="text" placeholder="bb">
+    </template>
+    <template id="C">
+        <input type="text" placeholder="cc">
+    </template>
+</body>
+<script src="vue.js"></script>
+<script>
+    const a = {
+        name: 'mya',   //给组件定义一个名字
+        template: "#A",
+        activated () {    //使用了keep-alive的组件会有两个生命周期 activated-被激活状态  & deactivated-关闭状态
+            console.log('a正在被使用');
+        },
+        deactivated () {
+            console.log('a被雪藏了')
+        }
+    }
+
+    const b = {
+        name: 'myb',
+        template: "#B",
+        activated () {
+            console.log('b正在被使用');
+        },
+        deactivated () {
+            console.log('b被雪藏了')
+        }
+    }
+
+    const c = {
+        template: "#C",
+        activated () {
+            console.log('c正在被使用');
+        },
+        deactivated () {
+            console.log('c被雪藏了')
+        }
+    }
+
+    const app =  new Vue({
+        el: "#app",
+        data: {
+            tem: 'aa'
+        },
+        components: {
+            'aa': a,
+            'bb': b,
+            'cc': c 
+        }
+    })
+</script>
+</html>

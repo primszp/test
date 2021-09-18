@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="tem='aa'">aa</button>
+        <button @click="tem='bb'">bb</button>
+        <button @click="tem='cc'">cc</button>
+        <keep-alive include="mya,myb">   <!--规定被命名的组件有keep-alive效果，注意逗号之间不要有间隔-->
+            <component :is="tem"></component>
+        </keep-alive>
+    </div>
+    <template id="A">
+        <input type="text" placeholder="aa">
+    </template>
+    <template id="B">
+        <input type="text" placeholder="bb">
+    </template>
+    <template id="C">
+        <input type="text" placeholder="cc">
+    </template>
+</body>
+<script src="vue.js"></script>
+<script>
+    const a = {
+        name: 'mya',   //给组件定义一个名字
+        template: "#A",
+    }
+
+    const b = {
+        name: 'myb',
+        template: "#B",
+    }
+
+    const c = {
+        template: "#C",
+    }
+
+    const app =  new Vue({
+        el: "#app",
+        data: {
+            tem: 'aa'
+        },
+        components: {
+            'aa': a,
+            'bb': b,
+            'cc': c 
+        }
+    })
+</script>
+</html>

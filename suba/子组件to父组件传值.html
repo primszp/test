@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-content @myevent="showMsg"></my-content> <!--A1、子组件传值的过程一：在父组件调用子组件的地方定义自定义方法-->
+    </div>
+</body>
+<template id="content">
+    <div>这是内容组件</div>
+</template>
+<script src="vue.js"></script>
+<script>
+    const mycontent = {
+        template: "#content",
+        mounted () {           //****A2、子组件传值的过程二：在生命周期函数或子组件的其他事件中 触发 父组件的自定义事件，并将值传出去
+            this.$emit("myevent", 10000)
+        }
+    }
+
+    const app = new Vue({
+        el: "#app",
+        components: {
+            "my-content": mycontent,
+        },
+        methods: {    //********B1、父组件的自定义属性实现事件，并接收传值
+            showMsg (val) {
+                console.log(val);
+            }
+        } 
+
+    })
+</script>
+</html>
